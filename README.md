@@ -1,7 +1,7 @@
 # Administrador-de-notas-estudiantiles
 # Descripcion
 Administrador de notas estudiantiles basado en c++ con POO.
-#Diferen
+# Diferen
 database.txt -> Base de datos estatica
 main.cpp -> Codigo
 ## UMD 1.0.
