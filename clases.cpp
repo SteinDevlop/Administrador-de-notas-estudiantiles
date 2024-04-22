@@ -15,14 +15,38 @@ struct estudiante{ //definición de struct "estudiante"
   float nota3;
   float nota_final;
 };
-class data_base{
-  int tam;
-  estudiante *database;
+//pedazo que tengo que revisar
+class comandos{
+  public: 
+    virtual void importar() const =0;
+    virtual void exportar() const =0;
+//
+};
+//proseguir
+class data_base: public comandos{
+  private:
+    int tam;
+    estudiante *database;
   public:
     data_base(int cant): tam(cant){
       database = new estudiante [tam];
     }
-    ~data base{
+    ~data base(){
       delete[] database;
     }
+    friend class menu;
+    friend class comprobador;
+  /*void importar() const override{ }
+  void exportar() const override{ }*/
+//
+};
+class menu{
+  public:
+      //no necesita constructor??
+  void agregar_est();
+  void show_data_base();
+  void show_estudiante();
+  void delete_estudiante();
+  void modificar_info_estudiante();
+  void agregar_notas();
 };
