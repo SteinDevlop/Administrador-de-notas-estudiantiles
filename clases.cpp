@@ -31,7 +31,7 @@ class data_base: public comandos{
     data_base(int cant): tam(cant){
       database = new estudiante [tam];
     }
-    ~data base(){
+    ~data_base(){
       delete[] database;
     }
     friend class menu;
