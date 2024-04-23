@@ -73,6 +73,8 @@ class Data_base: public comandos{
   	int tam;
 	Estudiante *database;
   public:
+    	friend class menu;
+    	friend class comprobador;
   	Data_base(int tam):database(new Estudiante [tam]){}
     ~Data_base(){delete[] database;}
 	  };
