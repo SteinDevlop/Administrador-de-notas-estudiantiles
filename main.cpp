@@ -52,13 +52,13 @@ class comandos{
     getline(leerArchivo,linea,'|');
     p[i].carrera=linea;
     getline(leerArchivo,linea,'|');
-    p[i].nota1=atoi(linea.c_str());
+    p[i].nota1=atof(linea.c_str());
     getline(leerArchivo,linea,'|');
-    p[i].nota2=atoi(linea.c_str());
+    p[i].nota2=atof(linea.c_str());
     getline(leerArchivo,linea,'|');
-    p[i].nota3=atoi(linea.c_str());
+    p[i].nota3=atof(linea.c_str());
     getline(leerArchivo,linea);
-    p[i].nota_final=atoi(linea.c_str());//falta un salto de linea
+    p[i].nota_final=atof(linea.c_str());//falta un salto de linea
   }leerArchivo.close();
   }
   void exportar(Estudiante p[], int n){
