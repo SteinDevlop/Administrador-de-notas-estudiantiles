@@ -14,8 +14,6 @@ struct Estudiante{ //definición de struct "estudiante"
   int codigo;
   string nombre;
   string carrera;
-//notadelandres: Yo sugiero hacer un arreglo donde estén las tres notas y la nota final, es decir, float notas [4], se ahorra espacialidad y optimiza mejor;
-//Nota de mi quien no es tu: Dependera que diga botero el martes, mientras tanto, lo hare con el struct mas por flojera que nada.
   float nota1;
   float nota2;
   float nota3;
