@@ -9,7 +9,6 @@ struct estudiante{ //definición de struct "estudiante"
   string nombre;
   string carrera;
   string materia;
-//notadelandres: Yo sugiero hacer un arreglo donde estén las tres notas y la nota final, es decir, float notas [4], se ahorra espacialidad y optimiza mejor;
   float nota1;
   float nota2;
   float nota3;
