@@ -28,7 +28,7 @@ class comandos{
     leerArchivo.open("database.txt");
     while(!leerArchivo.eof()){
     getline(leerArchivo,linea);
-    if(linea.size()!=0){ //Determina que el archivo ha terminado de leerse
+    if(linea.size()!=0){//Determina que el archivo ha terminado de leerse
     n++;}}
     leerArchivo.close(); //cierre del flujo
     leerArchivo.open("database.txt");
@@ -40,13 +40,13 @@ class comandos{
     getline(leerArchivo,linea,'|');
     p[i].carrera=linea;
     getline(leerArchivo,linea,'|');
-    p[i].nota1=atoi(linea.c_str());
+    p[i].nota1=atof(linea.c_str());
     getline(leerArchivo,linea,'|');
-    p[i].nota2=atoi(linea.c_str());
+    p[i].nota2=atof(linea.c_str());
     getline(leerArchivo,linea,'|');
-    p[i].nota3=atoi(linea.c_str());
+    p[i].nota3=atof(linea.c_str());
     getline(leerArchivo,linea);
-    p[i].nota_final=atoi(linea.c_str());
+    p[i].nota_final=atof(linea.c_str());
   }leerArchivo.close();}
   void exportar(Estudiante p[], int n){
     ofstream escribirArchivo;
