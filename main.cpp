@@ -1,7 +1,7 @@
 /*
 Administrador de notas estudiantiles (nombre provisional)
 Alejandro Pedro Steinman Cuesta - T00077151
-Andres Rubiano Marrugo - T000
+Andres Rubiano Marrugo - T00077084
 */
 #include <iostream>
 #include <string>
