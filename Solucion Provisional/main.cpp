@@ -1,15 +1,24 @@
 /*
-Administrador de notas estudiantiles
-Alejandro Pedro Steinman Cuesta - T00077151
-Andres Rubiano Marrugo - T00077084
-"De este modo invocamos al Dios Máquina. De este modo reparamos lo que estaba roto."
+Administrador de Notas Estudiantiles
+Alejandro Pedro Steinman Cuesta - T00077151.
+Andres Rubiano Marrugo - T00077084.
+"De este modo invocamos al Dios Maquina. De este modo reparamos lo que estaba roto."
+
+Falta: 
+* Optimizar entorno visual
+* Quitar o disminuir puntero control
+* Seguir probando en busca de errores.
+* Mejorar la actualizacion de pantalla para errores repetitivos
 */
 
 #include <iostream>
 #include <string>
+#include <cstdlib>
 #include <fstream>
 #include <iomanip>
+#include <stdio.h>
 #include <ctype.h>
+#include <windows.h> 
 using namespace std;
 
 struct Estudiante {
@@ -211,7 +220,7 @@ void agregar_est() {
 			else {cout<<"No se ha encontrado informacion del Estudiante ingresado."<<endl;}
 	}
 	void modificar_est(){
-		int pos, op; bool cont, pase; string nombre, carrera, cod; float nota;
+		int pos, op; bool cont, pase; string nombre="", carrera, cod; float nota;
 		cout<<"__________________________________________________________________________________________________________________"<<endl;
 		for(int i=0; i<tam;i++){cout<<db[i].codigo<<"\t"<<db[i].nombre<<"\t"<<db[i].carrera<<endl;}	
 		cout<<"__________________________________________________________________________________________________________________"<<endl;
@@ -231,13 +240,15 @@ void agregar_est() {
 			switch(op){
 				case 1:
 					do{
-						cout<<"Ingrese nuevo nombre, correctamente: "; getline(cin, nombre); cin.ignore();
+						cin.ignore();
+						cout<<"Ingrese nuevo nombre, correctamente: "; getline(cin, nombre);
 						pase = comprobar(nombre);
 					} while(pase ==false);db[pos].nombre = nombre;
 					break;
 				case 2:
 					do{
-						cout<<"Ingrese nueva carrera, correctamente: "; getline(cin, carrera); cin.ignore();
+						cin.ignore();
+						cout<<"Ingrese nueva carrera, correctamente: "; getline(cin, carrera);
 						pase = comprobar(carrera);
 					}while(pase ==false);db[pos].carrera = carrera;
 					break;	
@@ -297,7 +308,10 @@ void agregar_est() {
 		cout<<"|Corte 2 -------------> 35%|"<<endl;
 		cout<<"|Corte 3 -------------> 35%|"<<endl;
 		cout<<"----------------------------"<<endl;
-		do{cout<<"(Ingrese numero del corte) Nota a modificar. Opcion: (1-3) "; cin>>op;}while(op<1 or op>3);
+		do
+		{
+		cout<<"(Ingrese numero del corte) Nota a modificar. Opcion: (1-3) "; cin>>op;
+		}while(op<1 or op>3);
 			switch (op){
 					case 1:
 					cout<<"Ingrese nota a cambiar: "; cin>>nota; 
@@ -328,9 +342,7 @@ class MENU {
 int main(){
 	Administrador puntero;
 	int opcion; bool c;
-	cout<<"-----Sistema de Administracion Estudiantil-----"<<endl;
-	cout<<"Importando informacion..."<<endl;puntero.importar(); cout<<"Informacion correctamente importada."<<endl; system("pause");
-	cout<<"Pulse cualquier tecla para continuar"<<endl;system("cls");
+	puntero.importar();
 	do{
 		puntero.nota_final();
 		system("cls");
