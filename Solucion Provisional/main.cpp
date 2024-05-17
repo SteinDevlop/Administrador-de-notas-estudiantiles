@@ -9,6 +9,9 @@ Falta:
 * Quitar o disminuir puntero control
 * Seguir probando en busca de errores.
 * Mejorar la actualizacion de pantalla para errores repetitivos
+* Hacer comprobantes anticliclos de todo input
+* Hacer comprobante del menu inicial
+[Agradezco encarecidamente leer el .cpp si alguna parte del main original no sale, Gracias.]
 */
 
 #include <iostream>
