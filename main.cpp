@@ -1,7 +1,7 @@
 /*
 Alejandro Pedro Steinman Cuesta - T00077151.
 Andres Rubiano Marrugo - T00077084.
-Administrador de Notas Estudiantiles version 1.1
+Administrador de Notas Estudiantiles version 1.2
 "De este modo invocamos al Dios Maquina. De este modo reparamos lo que estaba roto."*/
 
 #include <iostream>
@@ -100,7 +100,7 @@ class comandos{
 		}
 	}
 	bool comprobar(string cadena){
-		string patron ="\@/*-+,.-_{}[]#$%&()=?¡'¿!|°¬~^`<>\""; int tam_patron = patron.size();		
+		string patron ="\@/*-+,.-_{}[]#$%&()=?Â¡'Â¿!|Â°Â¬~^`<>\""; int tam_patron = patron.size();		
 		int tam = cadena.size();
 		for (int j=0; j<tam_patron;j++){
 			if (cadena[0]=='"' or cadena[0]==patron[j]) {return false; break;}
@@ -134,7 +134,7 @@ class comandos{
     }
     bool verificador_cod(Estudiante BASE[], int tam, string codigo)
 	{	//ojo
-		string cadena ="/*-+,.-_@{}[]#$%&/()=?¡'¿!|°¬~^`<>"; int tam_cadena = cadena.size(); int tamano = codigo.size();
+		string cadena ="/*-+,.-_@{}[]#$%&/()=?Â¡'Â¿!|Â°Â¬~^`<>"; int tam_cadena = cadena.size(); int tamano = codigo.size();
 		if(tamano==9){
 			char letra = codigo[0], f1 = codigo[1], f2=codigo[2], f3=codigo[3];
 			if(letra=='T' and f1 =='0'and f2 =='0'and f3 =='0'){
