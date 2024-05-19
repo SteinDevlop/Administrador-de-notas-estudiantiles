@@ -100,9 +100,18 @@ class comandos{
 		}
 	}
 	bool comprobar(string cadena){
+		string patron ="\@/*-+,.-_{}[]#$%&()=?¡'¿!|°¬~^`<>\""; int tam_patron = patron.size();		
 		int tam = cadena.size();
+		for (int j=0; j<tam_patron;j++){
+			if (cadena[0]=='"' or cadena[0]==patron[j]) {return false; break;}
+		}
 		if(tam==0 or isdigit(cadena[0]) or isblank(cadena[0])) return false;
 		else{
+			for (int i =1; i<tam;i++){
+				for (int j=0; j<tam_patron;j++){
+					if (cadena[i]==patron[j] or cadena[i]=='""') {return false;break;}
+				}
+			}
 			for (int i=1; i<tam;i++){if(isdigit(cadena[i])) {return false; break;}}
 			return true;
 		}	
@@ -124,20 +133,25 @@ class comandos{
         return false;
     }
     bool verificador_cod(Estudiante BASE[], int tam, string codigo)
-	{
-		int tamano = codigo.size();
+	{	//ojo
+		string cadena ="/*-+,.-_{}[]#$%&/()=?¡'¿!|°¬~^`<>"; int tam_cadena = cadena.size(); int tamano = codigo.size();
 		if(tamano==9){
-			char letra = codigo[0];
-			if(letra=='T' or letra=='t'){
-				for(int i =1 ; i<tamano; i++){
-        		if ((isalpha(codigo[i])) or (isblank(codigo[i]))){cout<<"\tError: Codigo incorrecto. "<<endl;return false; break;}
+			char letra = codigo[0], f1 = codigo[1], f2=codigo[2], f3=codigo[3];
+			if(letra=='T' and f1 =='0'and f2 =='0'and f3 =='0'){
+				for (int i =4; i<tamano;i++){
+					for (int j=0; j<tam_cadena;j++){
+						if (codigo[i]==cadena[j]) {cout<<"\tError: Formato de Codigo incorrecto."<<endl;cout<<"\tFormato del codigo --> T000##### (Solo numeros)"<<endl;return false;break;}
+					}
+				}
+				for(int i =4 ; i<tamano; i++){
+        			if ((isalpha(codigo[i])) or (isblank(codigo[i]))){cout<<"\tError: Codigo incorrecto."<<endl;return false; break;}
 				}
 				if(repet_cod(BASE,tam, codigo)==true){cout<<"\tError: Codigo existente"<<endl; return false;}
 				else return true;
 			}
-			else return false;
+			else{cout<<"\tError: Formato de Codigo incorrecto."<<endl;cout<<"\tFormato del codigo --> T000#####"<<endl;return false;}
 		}
-		else if(tamano!=5){cout<<"\tError: Formato de Codigo incorrecto."<<endl;cout<<"\tFormato del codigo --> T000#####"<<endl; return false;}
+		else if(tamano!=9){cout<<"\tError: Formato de Codigo incorrecto."<<endl;cout<<"\tFormato del codigo --> T000##### (Solo numeros)"<<endl; return false;}
 		else return true;	
 	}
 };
@@ -221,22 +235,36 @@ class MENU{
   				cout<<"___________________________________________________"<<endl;
   				cout<<"|         Agregar Estudiante al Sistema           |"<<endl;
   				cout<<"|_________________________________________________|"<<endl;
+  				cout<<"\tFormato del codigo --> T000##### (Solo numeros)"<<endl;
     			do {
         			cout << "Ingrese codigo estudiantil (Ingrese 'T000' para salir): ";getline(cin,cod);
         			if (cod == "T000" or cod=="t000") {mostrar_menu(punt, base,tam);break;}
         			else{cont = cmd.verificador_cod(base,tam, cod);}
+        			cout<<endl;
     			}while (cont == false);
     			cout<<endl;
+				system("cls");
+  				cout<<"___________________________________________________"<<endl;
+  				cout<<"|         Agregar Estudiante al Sistema           |"<<endl;
+  				cout<<"|_________________________________________________|"<<endl;
+				cout << "Ingrese codigo estudiantil (Ingrese 'T000' para salir): ";cout<<cod<<endl;
     			do {
         			cout << "Ingrese nombre del Estudiante: "; getline(cin, nombre); //
         			cont = cmd.comprobar(nombre);
         			if (!cont) {cout << "Error: Nombre no valido."<<endl;}
+        			cout<<endl;
     			} while (!cont);
     			cout<<endl;
+				system("cls");
+  				cout<<"___________________________________________________"<<endl;
+  				cout<<"|         Agregar Estudiante al Sistema           |"<<endl;
+  				cout<<"|_________________________________________________|"<<endl;
+  				cout << "Ingrese codigo estudiantil (Ingrese 'T000' para salir): ";cout<<cod<<endl; cout << "Ingrese nombre del Estudiante: ";cout<<nombre<<endl;
    				do {
         			cout << "Ingrese carrera del Estudiante: ";getline(cin, carrera); ///
         			cont = cmd.comprobar(carrera);
         			if (!cont) {cout << "Error: Carrera no valida."<<endl;}
+        			cout<<endl;
     			} while (!cont);
     			Estudiante* temp = new Estudiante[tam+1];
     			for (int i = 0; i < tam; i++) {temp[i] = base[i];}
@@ -316,6 +344,7 @@ class MENU{
         					cout <<"Ingrese nombre del Estudiante: ";getline(cin, nombre); //
         					cont = cmd.comprobar(nombre);
         					if (cont==false) {cout<<"\tError: Nombre no valido."<<endl;}
+        					cout<<endl;
     					} while (!cont);
     					base[pos].nombre = nombre;
     					cout<<"Informacion modificada correctamente. "<<endl;
@@ -325,6 +354,7 @@ class MENU{
         					cout << "Ingrese carrera del Estudiante: ";getline(cin, carrera); ///
         					cont = cmd.comprobar(carrera);
         					if (!cont) {cout << "\tError: Carrera no valida."<<endl;}
+        					cout<<endl;
     					} while (!cont);
     					base[pos].carrera = carrera;
     					cout<<"Informacion modificada correctamente. "<<endl;
