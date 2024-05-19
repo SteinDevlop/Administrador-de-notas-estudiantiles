@@ -1,9 +1,10 @@
-77321|Hernando Altamar|Bioingenieria termocuantica|5|3.4|2|0|
-65432|Andrea Soto|Ingenieria Biomedica|4.2|3.8|4.5|0|
-89012|Juan Pablo Ramirez|Ingenieria Aeroespacial|3.7|4|3.9|0|
-56789|Maria Fernandez|Quimica Molecular|4.5|4.2|3.8|0|
-32145|Ricardo Gomez|Ingenieria de Software|4|4.3|3.9|0|
-45678|Laura Martinez|Fisica Teorica|3.8|4.1|3.7|0|
-23456|Carlos Lopez|Ingenieria Mecatronica|4.2|3.9|4|0|
-78901|Alejandra Torres|Ingenieria Electrica|3.5|4|3.8|0|
-54321|Pablo Ramirez|Ingenieria Civil|3.9|3.6|3|0|
+T00023456|Carlos Lopez|Ingenieria Mecatronica|4.2|5|4|4.41|
+T00032145|Ricardo Gomez|Ingenieria de Software|4|4.3|3.9|4.07|
+T00045678|Laura Martinez|Fisica Teorica|3.8|4.1|3.7|3.87|
+T00054321|Pablo Ramirez|Ingenieria Civil|3.9|3.6|3|3.48|
+T00056789|Maria Fernandez|Quimica Molecular|4.5|4.2|3.8|4.15|
+T00065432|Andrea Soto|Ingenieria Biomedica|4.2|3.8|4.5|4.165|
+T00077084|Andres Rubiano|Ingenieria de Telecomunicaciones|5|3.69|0|2.7915|
+T00077089|Tania Hoyos|Ciencias Politicas y Relaciones|4.995|4.36|3.89|4.386|
+T00078901|Alejandra Torres|Ingenieria Electrica|3.5|4|3.8|3.78|
+T00089012|Juan Pablo Ramirez|Ingenieria Aeroespacial|3.7|4|3.9|3.875|
