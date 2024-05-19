@@ -134,13 +134,15 @@ class comandos{
     }
     bool verificador_cod(Estudiante BASE[], int tam, string codigo)
 	{	//ojo
-		string cadena ="/*-+,.-_{}[]#$%&/()=?¡'¿!|°¬~^`<>"; int tam_cadena = cadena.size(); int tamano = codigo.size();
+		string cadena ="/*-+,.-_@{}[]#$%&/()=?¡'¿!|°¬~^`<>"; int tam_cadena = cadena.size(); int tamano = codigo.size();
 		if(tamano==9){
 			char letra = codigo[0], f1 = codigo[1], f2=codigo[2], f3=codigo[3];
 			if(letra=='T' and f1 =='0'and f2 =='0'and f3 =='0'){
 				for (int i =4; i<tamano;i++){
 					for (int j=0; j<tam_cadena;j++){
-						if (codigo[i]==cadena[j]) {cout<<"\tError: Formato de Codigo incorrecto."<<endl;cout<<"\tFormato del codigo --> T000##### (Solo numeros)"<<endl;return false;break;}
+						if (codigo[i]==cadena[j] or codigo[i]=='"') {
+						cout<<"\tError: Formato de Codigo incorrecto."<<endl;cout<<"\tFormato del codigo --> T000##### (Solo numeros)"<<endl;
+						return false;break;}
 					}
 				}
 				for(int i =4 ; i<tamano; i++){
