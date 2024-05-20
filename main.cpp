@@ -1,7 +1,6 @@
-/*
-Alejandro Pedro Steinman Cuesta - T00077151.
+/*Alejandro Pedro Steinman Cuesta - T00077151.
 Andres Rubiano Marrugo - T00077084.
-Administrador de Notas Estudiantiles version 1.2
+Administrador de Notas Estudiantiles version 1.3
 "De este modo invocamos al Dios Maquina. De este modo reparamos lo que estaba roto."*/
 
 #include <iostream>
@@ -100,16 +99,16 @@ class comandos{
 		}
 	}
 	bool comprobar(string cadena){
-		string patron ="\@/*-+,.-_{}[]#$%&()=?¡'¿!|°¬~^`<>\""; int tam_patron = patron.size();		
+		string patron ="�\@/*-+,.-_{}[]#$%&()=?¡'¿!|°¬~^`<>\""; int tam_patron = patron.size();		
 		int tam = cadena.size();
 		for (int j=0; j<tam_patron;j++){
-			if (cadena[0]=='"' or cadena[0]==patron[j]) {return false; break;}
+			if (cadena[0]=='"' or cadena[0]=='!' or cadena[0]=='?' or cadena[0]=='�' or cadena[0]=='�' or cadena[0]==patron[j]) {return false; break;}
 		}
 		if(tam==0 or isdigit(cadena[0]) or isblank(cadena[0])) return false;
 		else{
 			for (int i =1; i<tam;i++){
 				for (int j=0; j<tam_patron;j++){
-					if (cadena[i]==patron[j] or cadena[i]=='""') {return false;break;}
+					if (cadena[i]==patron[j] or cadena[i]=='""'or cadena[i]=='!' or cadena[0]=='?' or cadena[0]=='�' or cadena[0]=='�') {return false;break;}
 				}
 			}
 			for (int i=1; i<tam;i++){if(isdigit(cadena[i])) {return false; break;}}
@@ -134,7 +133,7 @@ class comandos{
     }
     bool verificador_cod(Estudiante BASE[], int tam, string codigo)
 	{	//ojo
-		string cadena ="/*-+,.-_@{}[]#$%&/()=?¡'¿!|°¬~^`<>"; int tam_cadena = cadena.size(); int tamano = codigo.size();
+		string cadena ="�/*-+,.-_@{}[]#$%&/()=?¡'¿!|°¬~^`<>"; int tam_cadena = cadena.size(); int tamano = codigo.size();
 		if(tamano==9){
 			char letra = codigo[0], f1 = codigo[1], f2=codigo[2], f3=codigo[3];
 			if(letra=='T' and f1 =='0'and f2 =='0'and f3 =='0'){
@@ -177,7 +176,7 @@ class MENU{
 					cout<<"\t 7) Guardar Cambios"<<endl;
 					cout<<"\t 8) Salir"<<endl;
 					cout<<"Ingrese opcion (1-8): ";cin>>opcion;
-					cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+					cin.ignore(numeric_limits<std::streamsize>::max(), '\n');//buffer
 					if(opcion.length()==1 and isdigit(opcion[0]) and (opcion >="1"and opcion<="8")){c=false; break;}
 					else c = true;
 				}while(c==true);
@@ -251,8 +250,7 @@ class MENU{
   				cout<<"|_________________________________________________|"<<endl;
 				cout << "Ingrese codigo estudiantil (Ingrese 'T000' para salir): ";cout<<cod<<endl;
     			do {
-        			cout << "Ingrese nombre del Estudiante: "; getline(cin, nombre); //
-        			cont = cmd.comprobar(nombre);
+        			cout << "Ingrese nombre del Estudiante: "; getline(cin, nombre); cont = cmd.comprobar(nombre);
         			if (!cont) {cout << "Error: Nombre no valido."<<endl;}
         			cout<<endl;
     			} while (!cont);
@@ -270,16 +268,11 @@ class MENU{
     			} while (!cont);
     			Estudiante* temp = new Estudiante[tam+1];
     			for (int i = 0; i < tam; i++) {temp[i] = base[i];}
-    			delete[] base;
-            	base = temp;
-  				base[tam].codigo=cod;
-				base[tam].nombre=nombre;
-				base[tam].carrera=carrera;
-				base[tam].nota1=0;
-				base[tam].nota2=0;
-				base[tam].nota3=0;
-				base[tam].nota_final=0;
-				tam++;
+    			delete[] base; base = temp;
+  				base[tam].codigo=cod; base[tam].nombre=nombre;
+				base[tam].carrera=carrera; base[tam].nota1=0;
+				base[tam].nota2=0; base[tam].nota3=0;
+				base[tam].nota_final=0; tam++;
 				cout<<"Estudiante agregado correctamente." << endl;
 				system("pause");
 			}while(true);
@@ -335,6 +328,13 @@ class MENU{
 					cout<<"\t 3) Nota Corte 1"<<endl;
 					cout<<"\t 4) Nota Corte 2"<<endl;
 					cout<<"\t 5) Nota Corte 3"<<endl;
+					cout<<"----------------------------"<<endl;
+					cout<<"|Informacion de las notas: |"<<endl;
+					cout<<"|Notas entre 0 y 5.        |"<<endl;
+					cout<<"|Corte 1 -------------> 30%|"<<endl;
+					cout<<"|Corte 2 -------------> 35%|"<<endl;
+					cout<<"|Corte 3 -------------> 35%|"<<endl;
+					cout<<"----------------------------"<<endl;
 					cout<<"Opcion (1-5): ";getline(cin, opcion);
 					if(opcion.length()==1 and isdigit(opcion[0]) and (opcion>="1"and opcion<="5")){c=false; break;}	
 					else c=true;				
@@ -343,8 +343,7 @@ class MENU{
 				switch(op){
 					case '1':
 						do {
-        					cout <<"Ingrese nombre del Estudiante: ";getline(cin, nombre); //
-        					cont = cmd.comprobar(nombre);
+        					cout <<"Ingrese nombre del Estudiante: ";getline(cin, nombre); cont = cmd.comprobar(nombre);
         					if (cont==false) {cout<<"\tError: Nombre no valido."<<endl;}
         					cout<<endl;
     					} while (!cont);
@@ -353,8 +352,7 @@ class MENU{
     					break;
 					case '2':
 						do {
-        					cout << "Ingrese carrera del Estudiante: ";getline(cin, carrera); ///
-        					cont = cmd.comprobar(carrera);
+        					cout << "Ingrese carrera del Estudiante: ";getline(cin, carrera); cont = cmd.comprobar(carrera);
         					if (!cont) {cout << "\tError: Carrera no valida."<<endl;}
         					cout<<endl;
     					} while (!cont);
@@ -364,29 +362,54 @@ class MENU{
 					case '3':
 						do{
 							cout<<"Ingrese nueva nota del corte 1, correctamente: ";getline(cin,nota); pase = cmd.comprobar_nota(nota);
+							if (!pase) {cout << "\tError: Nota no valida."<<endl;}
 						} while(pase ==false); cal = atof(nota.c_str());base[pos].nota1 = cal;
 						cout<<"Informacion modificada correctamente. "<<endl;
 						break;
 					case '4':
-						if(base[pos].nota1==0){cout<<"\tError: Debe ingresar la nota del corte 1 para editar este corte."<<endl;break;}
+						if(base[pos].nota1==0){
+							cout<<"\tError: Debe ingresar la nota del corte 1 para editar este corte."<<endl;
+							do{
+								cout<<"Ingrese nueva nota del corte 1, correctamente: ";getline(cin,nota); pase = cmd.comprobar_nota(nota);
+								if (!pase) {cout << "\tError: Nota no valida."<<endl;}
+							} while(pase ==false); cal = atof(nota.c_str());base[pos].nota1 = cal;
+							cout<<"Informacion modificada correctamente. "<<endl;
+							break;
+						}
 						if(base[pos].nota1!=0){
-						do{
-							cout<<"Ingrese nueva nota del corte 2, correctamente: ";getline(cin,nota); pase = cmd.comprobar_nota(nota);
-						} while(pase ==false);cal = atof(nota.c_str());base[pos].nota2 = cal;}
-						cout<<"Informacion modificada correctamente. "<<endl;
+							do{
+								cout<<"Ingrese nueva nota del corte 2, correctamente: ";getline(cin,nota); pase = cmd.comprobar_nota(nota);
+								if (!pase) {cout << "\tError: Nota no valida."<<endl;}
+							} while(pase ==false);cal = atof(nota.c_str());base[pos].nota2 = cal;
+							cout<<"Informacion modificada correctamente. "<<endl;
+						}
 						break;
 					case '5':
-						if(base[pos].nota1==0 or base[pos].nota2==0){cout<<"\tError: Debe ingresar la nota del corte 1 y/o 2 para editar este corte."<<endl;break;}
+						if(base[pos].nota1==0 or base[pos].nota2==0){
+							cout<<"\tError: Debe ingresar la nota del corte 1 y/o 2 para editar este corte."<<endl;
+							do{
+								cout<<"Ingrese nueva nota del corte 1, correctamente: ";getline(cin,nota); pase = cmd.comprobar_nota(nota);
+								if (!pase) {cout << "\tError: Nota no valida."<<endl;}
+							} while(pase ==false); cal = atof(nota.c_str());base[pos].nota1 = cal;
+							do{
+								cout<<"Ingrese nueva nota del corte 2, correctamente: ";getline(cin,nota); pase = cmd.comprobar_nota(nota);
+								if (!pase) {cout << "\tError: Nota no valida."<<endl;}
+							} while(pase ==false);cal = atof(nota.c_str());base[pos].nota2 = cal;
+							cout<<"Informacion modificada correctamente. "<<endl;
+							break;
+						}
 						if(base[pos].nota1!=0 or base[pos].nota2!=0){
-						do{
-							cout<<"Ingrese nueva nota del corte 3, correctamente: ";getline(cin,nota); pase = cmd.comprobar_nota(nota);
-						} while(pase ==false);cal = atof(nota.c_str());base[pos].nota3 = cal;}
-						cout<<"Informacion modificada correctamente. "<<endl;
+							do{
+								cout<<"Ingrese nueva nota del corte 3, correctamente: ";getline(cin,nota); pase = cmd.comprobar_nota(nota);
+								if (!pase) {cout << "\tError: Nota no valida."<<endl;}
+							} while(pase ==false);cal = atof(nota.c_str());base[pos].nota3 = cal;
+							cout<<"Informacion modificada correctamente. "<<endl;
+						}
 						break;
 					}				
 				do{
 					string ans; cout<<endl;
-					cout<<"\n Desea agregando notas? (S/N): ";getline(cin,ans);
+					cout<<"\n Desea seguir modificando informacion? (S/N): ";getline(cin,ans);
 					if(ans.length()<=2 and !(isdigit(ans[0])) and !(isblank(ans[0]))) {
 						char op = ans[0];
 						if(op=='S' or op=='s') {ii=true; break;}
@@ -422,7 +445,7 @@ class MENU{
 			do{
 				system("cls");
 				cout<<"___________________________________________________"<<endl;
-  				cout<<"|  Notas de Estudiante -Informacion del Curso     |"<<endl;
+  				cout<<"|  Notas de Estudiante - Informacion del Curso    |"<<endl;
   				cout<<"|_________________________________________________|"<<endl;
   				for(int i=0; i<tam;i++){base[i].nota_final = base[i].calcular_notafinal();}
   				cout<<setw(9)<<"Codigo"<<setw(25)<<"Nombre Completo"<<setw(37)<<"Carrera"<<setw(10)<<"Corte 1"<<setw(8)<<"Corte 2"<<setw(8)<<"Corte 3"<<setw(11)<<"Nota Final"<<endl;
@@ -437,6 +460,7 @@ class MENU{
 					cout<<"El Estudiante se encuentra en el sistema."<<endl;
 					cout<<"----------------------------"<<endl;
 					cout<<"|Informacion de las notas: |"<<endl;
+					cout<<"|Notas entre 0 y 5.        |"<<endl;
 					cout<<"|Corte 1 -------------> 30%|"<<endl;
 					cout<<"|Corte 2 -------------> 35%|"<<endl;
 					cout<<"|Corte 3 -------------> 35%|"<<endl;
@@ -451,26 +475,48 @@ class MENU{
 						case '1':
 							do{
 								cout<<"Ingrese nueva nota del corte 1, correctamente: ";getline(cin,nota);pase = cmd.comprobar_nota(nota);
+								if (!pase) {cout << "\tError: Nota no valida."<<endl;}
 							} while(pase ==false);cal = atof(nota.c_str()); base[pos].nota1 = cal;cout<<"Informacion modificada correctamente. "<<endl;
 							break;
 						case '2':
-							if(base[pos].nota1==0){cout<<"\tError: Debe ingresar la nota del corte 1 para editar este corte."<<endl;break;}
-							if(base[pos].nota1!=0){
-							do{
-								cout<<"Ingrese nueva nota del corte 2, correctamente: ";getline(cin,nota); pase = cmd.comprobar_nota(nota);
-							} while(pase ==false);cal = atof(nota.c_str());base[pos].nota2 = cal;cout<<"Informacion modificada correctamente. "<<endl;}
+							if(base[pos].nota1==0){
+								cout<<"\tError: Debe ingresar la nota del corte 1 para editar este corte."<<endl;
+								do{
+									cout<<"Ingrese nueva nota del corte 1, correctamente: ";getline(cin,nota); pase = cmd.comprobar_nota(nota);
+									if (!pase) {cout << "\tError: Nota no valida."<<endl;}
+								} while(pase ==false); cal = atof(nota.c_str());base[pos].nota1 = cal;
+								cout<<"Informacion modificada correctamente. "<<endl;
+								break;}
+							else if(base[pos].nota1!=0){
+								do{
+									cout<<"Ingrese nueva nota del corte 2, correctamente: ";getline(cin,nota); pase = cmd.comprobar_nota(nota);
+									if (!pase) {cout << "\tError: Nota no valida."<<endl;}
+								} while(pase ==false);cal = atof(nota.c_str());base[pos].nota2 = cal;
+								cout<<"Informacion modificada correctamente. "<<endl;}
 							break;
 						case '3':
-							if(base[pos].nota1==0 or base[pos].nota2==0){cout<<"\tError: Debe ingresar la nota del corte 1 y/o 2 para editar este corte."<<endl;break;}
+							if(base[pos].nota1==0 or base[pos].nota2==0){
+								cout<<"\tError: Debe ingresar la nota del corte 1 y/o 2 para editar este corte."<<endl;
+								do{
+									cout<<"Ingrese nueva nota del corte 1, correctamente: ";getline(cin,nota); pase = cmd.comprobar_nota(nota);
+									if (!pase) {cout << "\tError: Nota no valida."<<endl;}
+								} while(pase ==false); cal = atof(nota.c_str());base[pos].nota1 = cal;
+								do{
+									cout<<"Ingrese nueva nota del corte 2, correctamente: ";getline(cin,nota); pase = cmd.comprobar_nota(nota);
+									if (!pase) {cout << "\tError: Nota no valida."<<endl;}
+								} while(pase ==false);cal = atof(nota.c_str());base[pos].nota2 = cal;
+								cout<<"Informacion modificada correctamente."<<endl;
+								break;}
 							if(base[pos].nota1!=0 or base[pos].nota2!=0){
 							do{
 								cout<<"Ingrese nueva nota del corte 3, correctamente: ";getline(cin,nota); pase = cmd.comprobar_nota(nota);
-							} while(pase ==false);cal = atof(nota.c_str());base[pos].nota3 = cal;cout<<"Informacion modificada correctamente. "<<endl;}
+								if (!pase) {cout << "\tError: Nota no valida."<<endl;}
+							} while(pase ==false);cal = atof(nota.c_str());base[pos].nota3 = cal;cout<<"Informacion modificada correctamente."<<endl;}
 							break;
 					}
 					do{
 						string ans=" "; cout<<endl;
-						cout<<"\n Desea agregando notas? (S/N): ";getline(cin,ans);
+						cout<<"\n Desea seguir modificando informacion? (S/N): ";getline(cin,ans);
 						if(ans.length()<=2 and !(isdigit(ans[0])) and !(isblank(ans[0]))) {
 							char op = ans[0];
 							if(op=='S' or op=='s') {ii=true; break;}
