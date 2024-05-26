@@ -1,7 +1,4 @@
-/*Alejandro Pedro Steinman Cuesta - T00077151.
-Andres Rubiano Marrugo - T00077084.
-Administrador de Notas Estudiantiles version 1.3
-"De este modo invocamos al Dios Maquina. De este modo reparamos lo que estaba roto."*/
+/*"De este modo invocamos al Dios Maquina. De este modo reparamos lo que estaba roto."*/
 
 #include <iostream>
 #include <string>
@@ -99,16 +96,16 @@ class comandos{
 		}
 	}
 	bool comprobar(string cadena){
-		string patron ="�\@/*-+,.-_{}[]#$%&()=?¡'¿!|°¬~^`<>\""; int tam_patron = patron.size();		
+		string patron ="¡\@/*-+,.-_{}[]#$%&()=?Â¡'Â¿!|Â°Â¬~^`<>\""; int tam_patron = patron.size();		
 		int tam = cadena.size();
 		for (int j=0; j<tam_patron;j++){
-			if (cadena[0]=='"' or cadena[0]=='!' or cadena[0]=='?' or cadena[0]=='�' or cadena[0]=='�' or cadena[0]==patron[j]) {return false; break;}
+			if (cadena[0]=='"' or cadena[0]=='!' or cadena[0]=='?' or cadena[0]=='¿' or cadena[0]=='¡' or cadena[0]==patron[j]) {return false; break;}
 		}
 		if(tam==0 or isdigit(cadena[0]) or isblank(cadena[0])) return false;
 		else{
 			for (int i =1; i<tam;i++){
 				for (int j=0; j<tam_patron;j++){
-					if (cadena[i]==patron[j] or cadena[i]=='""'or cadena[i]=='!' or cadena[0]=='?' or cadena[0]=='�' or cadena[0]=='�') {return false;break;}
+					if (cadena[i]==patron[j] or cadena[i]=='""'or cadena[i]=='!' or cadena[0]=='?' or cadena[0]=='¿' or cadena[0]=='¡') {return false;break;}
 				}
 			}
 			for (int i=1; i<tam;i++){if(isdigit(cadena[i])) {return false; break;}}
@@ -133,7 +130,7 @@ class comandos{
     }
     bool verificador_cod(Estudiante BASE[], int tam, string codigo)
 	{	//ojo
-		string cadena ="�/*-+,.-_@{}[]#$%&/()=?¡'¿!|°¬~^`<>"; int tam_cadena = cadena.size(); int tamano = codigo.size();
+		string cadena ="¡/*-+,.-_@{}[]#$%&/()=?Â¡'Â¿!|Â°Â¬~^`<>"; int tam_cadena = cadena.size(); int tamano = codigo.size();
 		if(tamano==9){
 			char letra = codigo[0], f1 = codigo[1], f2=codigo[2], f3=codigo[3];
 			if(letra=='T' and f1 =='0'and f2 =='0'and f3 =='0'){
@@ -535,8 +532,6 @@ class MENU{
 			control(punt, base,tam);	
 		}
 };
-/////
-/////
 int main(){
 	comandos cmd; MENU menu; int opcion; bool c;int tam = cmd.num_db();
 	Administrador puntero(tam); puntero.importar();
