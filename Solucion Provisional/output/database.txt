@@ -1,9 +1,0 @@
-77321|Hernando Altamar|Bioingenieria termocuantica|5|3.4|2|3.39|
-65432|Andrea Soto|Ingenieria Biomedica|4.2|3.8|4.5|4.165|
-89012|Juan Pablo Ramirez|Ingenieria Aeroespacial|3.7|4|3.9|3.875|
-56789|Maria Fernandez|Quimica Molecular|4.5|4.2|3.8|4.15|
-32145|Ricardo Gomez|Ingenieria de Software|4|4.3|3.9|4.07|
-45678|Laura Martinez|Fisica Teorica|3.8|4.1|3.7|3.87|
-23456|Carlos Lopez|Ingenieria Mecatronica|4.2|3.9|4|4.025|
-78901|Alejandra Torres|Ingenieria Electrica|3.5|4|3.8|3.78|
-54321|Pablo Ramirez|Ingenieria Civil|3.9|3.6|3|3.48|
