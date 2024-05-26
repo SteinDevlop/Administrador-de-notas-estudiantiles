@@ -6,4 +6,5 @@ Programa que administra el registro y calculo de las notas del estudiantado.
 
 # Informacion Aclaradora
 database.txt -> Base de datos estatica
+
 main.cpp -> Codigo
